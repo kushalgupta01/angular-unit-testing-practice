@@ -1,0 +1,33 @@
+it('[fcTicketTracker - check] - should check fcTicketTracker length greater 16 is invalid', () => {
+    let fcTicketTracker = component.formExceptionRepair.controls['fcTicketTracker'];
+    expect(fcTicketTracker.valid).toBeFalsy();
+    expect(fcTicketTracker.pristine).toBeTruthy();
+    expect(fcTicketTracker.hasError('required')).toBeTruthy();
+    fcTicketTracker.setValue('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+    expect(fcTicketTracker.hasError('maxlength')).toBeTruthy();
+  })
+
+  it('[fcTicketTracker - check] - should check fcTicketTracker length <= 16 is valid', () => {
+    let fcTicketTracker = component.formExceptionRepair.controls['fcTicketTracker'];
+    expect(fcTicketTracker.valid).toBeFalsy();
+    expect(fcTicketTracker.pristine).toBeTruthy();
+    expect(fcTicketTracker.hasError('required')).toBeTruthy();
+    fcTicketTracker.setValue('AAAAAAAAAA');
+    expect(fcTicketTracker.hasError('maxlength')).toBeFalsy();
+  })
+
+
+  it('[fcDBbName - check] - should check fcDBbName is mandatory', () => {
+    let fcDBbName = component.formExceptionRepair.controls['fcDBbName'];
+    expect(fcDBbName.valid).toBeFalsy();
+    expect(fcDBbName.pristine).toBeTruthy();
+    expect(fcDBbName.hasError('required')).toBeTruthy();
+    fcDBbName.setValue('fcDBbName');
+    expect(fcDBbName.hasError('required')).toBeFalsy();
+  })
+
+  it('[fcComments - check] - should check fcComments is optional', () => {
+    let fcComments = component.formExceptionRepair.controls['fcComments'];
+    expect(fcComments.valid).toBeTruthy();
+    expect(fcComments.hasError('required')).toBeFalsy();
+  })
