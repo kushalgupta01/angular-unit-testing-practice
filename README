@@ -69,3 +69,24 @@ it('on SearchExceptionRequest Click - set spinnerExceptionRequest to true', () =
   searchRequestTrackingButton.triggerEventHandler('click', null);
   expect(component.spinnerRequestTracking).toBe(true);
 })
+
+
+
+----------- clickSearch --------------------
+
+it('on search click atleast one search creteria required', () => {
+  spyOn(component.formAuditReport,'hasError').withArgs('atLeastOneRequired').and.returnValue(true);
+  let spyOnMessageService=spyOn(component.messageService,'add');
+  let clickSearchBtn = fixture.debugElement.query(By.css('.clickBtn'));
+  clickSearchBtn.triggerEventHandler('click', null);
+  expect(spyOnMessageService).toHaveBeenCalled();
+})
+
+
+it('on search click - if creteria found get the auditTracking', () => {
+  spyOn(component.formAuditReport,'hasError').withArgs('atLeastOneRequired').and.returnValue(false);
+  let serviceSpy= spyOn(auditReportServiceObj,'getSearch').and.returnValue(of([{id:'123'},{id:'789'}]));
+  let clickSearchBtn = fixture.debugElement.query(By.css('.clickBtn'));
+  clickSearchBtn.triggerEventHandler('click', null);
+  expect(component.audittrackings.length).toBeGreaterThan(0);
+})
