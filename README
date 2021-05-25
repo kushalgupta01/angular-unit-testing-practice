@@ -51,3 +51,21 @@ it('[fcTicketTracker - check] - should check fcTicketTracker length greater 16 i
   })
 
 ## // can you do for action service as we did for getDbNames
+
+
+
+--------------------Audit file---------------------------
+
+
+## // assuming .btn is the class name of button clicked
+it('on SearchExceptionRequest Click - set spinnerExceptionRequest to true', () => {
+    let searchExceptionRequestButton = fixture.debugElement.query(By.css('.btn'));
+    searchExceptionRequestButton.triggerEventHandler('click', null);
+    expect(component.spinnerExceptionRequest).toBe(true);
+ })
+
+ it('on SearchRequestTracking Click - set spinnerRequestTracking to true', () => {
+  let searchRequestTrackingButton = fixture.debugElement.query(By.css('.btn'));
+  searchRequestTrackingButton.triggerEventHandler('click', null);
+  expect(component.spinnerRequestTracking).toBe(true);
+})
