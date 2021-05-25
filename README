@@ -31,3 +31,23 @@ it('[fcTicketTracker - check] - should check fcTicketTracker length greater 16 i
     expect(fcComments.valid).toBeTruthy();
     expect(fcComments.hasError('required')).toBeFalsy();
   })
+  
+ ## // can you do for other controls as we did three above
+ 
+ 
+ it('testing subscribe method is getting called', () => {
+    let serviceSpy= spyOn(service,'getDbNames').and.returnValue(of(["DbName1","DbName2"]));
+    let subSpy= spyOn(service.getDbNames(),'subscribe');
+
+    component.ngOnInit();
+    expect(serviceSpy).toHaveBeenCalledBefore(subSpy);
+    expect(subSpy).toHaveBeenCalled();
+  })
+
+  it('testing execution within subscribe method', () => {
+
+     let serviceSpy= spyOn(service,'getDbNames').and.returnValue(of(["DbName1","DbName2"]));
+    expect(component.dbNames.length).toBeGreaterThan(0);
+  })
+
+## // can you do for action service as we did for getDbNames
