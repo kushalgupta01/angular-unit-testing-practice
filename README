@@ -90,3 +90,14 @@ it('on search click - if creteria found get the auditTracking', () => {
   clickSearchBtn.triggerEventHandler('click', null);
   expect(component.audittrackings.length).toBeGreaterThan(0);
 })
+
+
+------------ onDateRange-----
+
+it('should hide overlay if rangeCalender value at index 1 is not null', () => {
+  spyOn(component.rangeCalender,'value').and.returnValue(["01/12/2001","02/12/2001"]);
+  expect(component.rangeCalender.overlayVisible).toBe(true);
+  component.OnDateRangeSelection();
+  expect(component.rangeCalender.overlayVisible).toBe(false);
+})
+
